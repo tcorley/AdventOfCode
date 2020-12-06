@@ -1,5 +1,5 @@
 /**
- * https://adventofcode.com/2020/day/<n>
+ * https://adventofcode.com/2020/day/5
  */
 const readline = require("readline");
 const fs = require("fs");
