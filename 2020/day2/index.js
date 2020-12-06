@@ -1,17 +1,20 @@
 /**
- * https://adventofcode.com/2020/day/1
+ * https://adventofcode.com/2020/day/2
  */
-const readline = require('readline')
-const fs = require('fs')
+const readline = require("readline");
+const fs = require("fs");
 
-const readInterface = readline.createInterface({ input: fs.createReadStream('./data.txt'), console: false })
+const readInterface = readline.createInterface({
+  input: fs.createReadStream("./data.txt"),
+  console: false,
+});
 
-let entries = []
-let entrySet = new Set()
+let entries = [];
+let entrySet = new Set();
 
-let goodCount = 0
-let badCount = 0
-let totalCount = 0
+let goodCount = 0;
+let badCount = 0;
+let totalCount = 0;
 
 // Part one
 // readInterface.on('line', function (line) {
@@ -37,22 +40,27 @@ let totalCount = 0
 // })
 
 // part 2
-readInterface.on('line', function (line) {
-    const [positions, letterWithColon, password] = line.split(' ')
-    const letter = letterWithColon.split('')[0]
-    const [positionOne, positionTwo] = positions.split('-')
+readInterface.on("line", function (line) {
+  const [positions, letterWithColon, password] = line.split(" ");
+  const letter = letterWithColon.split("")[0];
+  const [positionOne, positionTwo] = positions.split("-");
 
-    if (password[positionOne-1] !== password[positionTwo-1] && (password[positionOne-1] === letter || password[positionTwo-1] === letter)) {
-        console.log('Found good', line)
-        goodCount++
-    } else {
-        // console.log('Found bad', line)
-        badCount++
-    }
-    totalCount++
+  if (
+    password[positionOne - 1] !== password[positionTwo - 1] &&
+    (password[positionOne - 1] === letter ||
+      password[positionTwo - 1] === letter)
+  ) {
+    console.log("Found good", line);
+    goodCount++;
+  } else {
+    // console.log('Found bad', line)
+    badCount++;
+  }
+  totalCount++;
+});
 
-})
-
-readInterface.on('close', function() {
-    console.log(`Out of ${totalCount} passwords, found ${goodCount} good passwords and ${badCount} bad passwords`)
-})
+readInterface.on("close", function () {
+  console.log(
+    `Out of ${totalCount} passwords, found ${goodCount} good passwords and ${badCount} bad passwords`
+  );
+});
