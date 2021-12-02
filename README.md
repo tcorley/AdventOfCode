@@ -2,13 +2,42 @@
 
 [Advent of Code](https://adventofcode.com)
 
-So far solutions are in Javascript, but I will add solutions in other languages as well.
+2020 uses node.js and 2021 uses deno.
 
 # Prerequisites
 
-- `node` >= 12
+## 2021
+
+**new**: use [deno](https://deno.land)
+
+```
+❯ deno --version
+deno 1.16.3 (release, x86_64-apple-darwin)
+v8 9.7.106.5
+typescript 4.4.2
+```
+
+## 2020
+
+`node >= 12`
 
 # How to Run solutions
+
+## 2021
+
+From project root:
+
+```
+yarn run:<mode> <day> <part>
+```
+
+where:
+
+- mode: `data` or `sample`
+- day: 1-25
+- part: 1 or 2
+
+## 2020
 
 Navigate to a day
 
