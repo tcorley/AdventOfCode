@@ -15,7 +15,7 @@ export const partTwo = (data: string) => {
 
   let increases = 0;
   let prev = 0;
-  Array(formattedDasta.length - 3 + 1)
+  Array(formattedData.length - 3 + 1)
     .fill(0)
     .forEach((_, i) => {
       const sum = [0, 1, 2]
@@ -28,6 +28,6 @@ export const partTwo = (data: string) => {
       }
       prev = sum;
     });
-  console.log(increases);
+
   return increases;
 };
