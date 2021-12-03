@@ -5,3 +5,7 @@ export const convertToNumberArray = (data: string): number[] => {
 export const convertToTokenizedArray = (data: string): string[][] => {
   return data.split("\n").map((v) => v.split(" "));
 };
+
+export const convertToStringArray = (data: string): string[] => {
+  return data.split("\n");
+};
