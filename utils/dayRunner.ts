@@ -1,27 +1,46 @@
-import chalkin from "chalkin";
+import chalkin from 'chalkin';
 
 type DayRunnerProps = {
   year: string;
   day: string;
-  mode: "data" | "sample";
+  mode: 'data' | 'sample';
   part: number;
+  useFirstPartInput?: boolean;
 };
 
-export const dayRunner = async ({ year, day, mode, part }: DayRunnerProps) => {
+export const dayRunner = async ({
+  year,
+  day,
+  mode,
+  part,
+  useFirstPartInput,
+}: DayRunnerProps) => {
   console.log(
     `Running ${chalkin.green(`${year}'s`)} Day ${chalkin.blue(
       day
-    )} part ${chalkin.magenta(part)} with the ${chalkin.yellow(mode)} set`
+    )} part ${chalkin.magenta(part)} with the ${chalkin.yellow(mode)} set ${
+      useFirstPartInput ? "and using the first part's input" : ''
+    }`
   );
 
   let data;
   try {
-    data = await Deno.readTextFile(
-      `${Deno.cwd()}/${year}/day${day}/${mode}${part}.txt`
-    );
+    if (useFirstPartInput) {
+      data = await Deno.readTextFile(
+        `${Deno.cwd()}/${year}/day${day}/${mode}1.txt`
+      );
+    } else {
+      data = await Deno.readTextFile(
+        `${Deno.cwd()}/${year}/day${day}/${mode}${part}.txt`
+      );
+    }
   } catch (_e: unknown) {
     console.log(
-      chalkin.red(`Could not find ${year}'s Day ${day}'s ${mode}${part}.txt`)
+      chalkin.red(
+        `Could not find ${year}'s Day ${day}'s ${mode}${
+          useFirstPartInput ? '1' : part
+        }.txt`
+      )
     );
     Deno.exit(1);
   }
