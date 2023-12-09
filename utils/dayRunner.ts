@@ -35,14 +35,31 @@ export const dayRunner = async ({
       );
     }
   } catch (_e: unknown) {
-    console.log(
-      chalkin.red(
-        `Could not find ${year}'s Day ${day}'s ${mode}${
-          useFirstPartInput ? '1' : part
-        }.txt`
-      )
-    );
-    Deno.exit(1);
+    if (part > 1) {
+      console.log('Trying to use the first part input');
+      try {
+        data = await Deno.readTextFile(
+          `${Deno.cwd()}/${year}/day${day}/${mode}1.txt`
+        );
+      } catch (_e: unknown) {
+        console.log(
+          chalkin.red(
+            `Could not find ${year}'s Day ${day}'s ${mode}1.txt since the input was not found for part ${part}.txt`
+          )
+        );
+        Deno.exit(1);
+      }
+    }
+    if (!data) {
+      console.log(
+        chalkin.red(
+          `Could not find ${year}'s Day ${day}'s ${mode}${
+            useFirstPartInput ? '1' : part
+          }.txt`
+        )
+      );
+      Deno.exit(1);
+    }
   }
   if (!data) {
     console.log(
